@@ -1,6 +1,8 @@
 # logfs
 logfs is a simple kernel-space filesystem that logs everything. Heavily based on and inspired by ![this](github.com/psankar/simplefs/).
 
+The file "Resources" has some links to resources that may be useful to understand how things work.
+
 ## Features
 - Skeleton of the project has been set.
 - You can only mount the filesystem, you do any other operations.
