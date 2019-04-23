@@ -1,0 +1,14 @@
+ 
+https://elixir.bootlin.com/linux/v3.0/source/include/linux/fs.h#L1824
+
+http://bricktou.cn/fs/super_mount_bdev_en.html
+
+https://elixir.bootlin.com/linux/v4.9/source/include/uapi/asm-generic/errno-base.h#L15
+
+https://www.quora.com/In-a-Linux-file-system-what-is-a-Superblock
+
+https://www.win.tue.nl/~aeb/linux/lk/lk-8.html
+
+https://unix.stackexchange.com/questions/4402/what-is-a-superblock-inode-dentry-and-a-file
+
+https://www.gnu.org/software/libc/manual/html_node/Testing-File-Type.html
