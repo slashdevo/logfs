@@ -9,10 +9,41 @@
  * License: GNU GPLv3  <https://www.gnu.org/licenses/>
  */
 
-
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/fs.h>
+#include <linux/version.h>
+
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 11, 0)
+//If the kernel version is 3.11.0 or newer, use this definition
+static int logfs_iterate(struct file *filePointer, struct dir_context *ctx)
+#else
+//Else use this one
+static int logfs_readdir(struct file *filePointer, void *dir, filldir_t filldir)
+#endif
+{
+	// Function skeleton for ls, to be added later.
+}
+
+const struct file_operations logfs_dir_operations = {
+		  .owner = THIS_MODULE,
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 11, 0)
+		  .iterate = logfs_iterate,	//Set the read function file operation
+#else
+		  .readdir = simplefs_readdir,
+#endif
+};
+
+struct dentry *logfs_lookup(struct inode *parent_inode, struct dentry *child_dentry, unsigned int flags)
+{
+	// Function skeleton used for the lookup function which is associated with dentrys,
+	// to be added later.
+}
+
+static struct inode_operations logfs_inode_ops = {
+		  .lookup = logfs_lookup,
+};
+
 
 /* This function creates, configures, and returns an inode
  * for the asked file or directory under the specified directory
@@ -23,7 +54,6 @@
  * 	umode_t mode								->		The file mode parameter (specifies the file type).
  * 	dev_t dev									->		The device parameter (specifies the device. i.e. hard drive or flash drive).
  * */
-
 struct inode *logfs_get_inode(struct super_block *sb, const struct inode *newFile, umode_t mode, dev_t dev)
 {
 	struct inode *newInode = new_inode(sb); //Create a new inode.
@@ -68,6 +98,8 @@ int logfs_fill_super(struct super_block *sb, void *data, int silent)
 	sb->s_magic = 0x02042019;
 
 	newInode = logfs_get_inode(sb, NULL, S_IFDIR, 0);
+	newInode->i_op = &logfs_inode_ops; //Setting inode operations
+	newInode->i_fop = &logfs_dir_operations; //Setting the directory operations
 	sb->s_root = d_make_root(newInode);
 	//Used at mount time to make a root directory for the superblock
 	if (!sb->s_root)
