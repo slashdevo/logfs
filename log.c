@@ -36,7 +36,7 @@ const struct file_operations logfs_dir_operations = {
 
 struct dentry *logfs_lookup(struct inode *parent_inode, struct dentry *child_dentry, unsigned int flags)
 {
-	// Function skeleton used for the lookup function which is associated with dentrys,
+	// Function skeleton used for the lookup function which is associated with directory entries (dentrys),
 	// to be added later.
 }
 
@@ -168,4 +168,4 @@ static void logfs_exit(void)
 module_init(logfs_init);
 module_exit(logfs_exit);
 
-MODULE_LICENSE("GPLv3");
+MODULE_LICENSE("GPL");
