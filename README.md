@@ -48,6 +48,16 @@ The ```-t``` option specifies the filesystem.
 - Check that it has been succesfuly mounted
 
 Run ```dmesg``` You should find: "logfs is succesfully mounted on [/dev/loop1]".
+- Change the directory into mount.
+
+```cd mount/```
+- List the contents of the directory (Does nothing for now).
+
+```ls```
+
+and then return to the parent directory.
+
+```cd ..```
 - Unmount the image
 
 ``` umount mount/```
