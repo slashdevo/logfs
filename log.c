@@ -30,7 +30,7 @@ const struct file_operations logfs_dir_operations = {
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 11, 0)
 		  .iterate = logfs_iterate,	//Set the read function file operation
 #else
-		  .readdir = simplefs_readdir,
+		  .readdir = logfs_readdir,
 #endif
 };
 
